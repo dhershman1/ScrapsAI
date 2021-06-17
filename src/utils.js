@@ -1,5 +1,5 @@
 function getAllColonyRooms () {
-  return _.filter(_values(Game.rooms), room => room.my)
+  return _.filter(_.values(Game.rooms), room => room.my)
 }
 
 function printRoomName (roomName) {
