@@ -296,3 +296,11 @@ function format () {
 
   createGlobalMemory()
 }
+
+module.exports = {
+  format,
+  load,
+  garbageCollect,
+  shouldRun,
+  wrap
+}
