@@ -42,14 +42,14 @@ function onTrainingEnvironment () {
 
 function getReinforcementLearningTrainingVerbosity () {
   if (Memory.reinforcementLearning) {
-    if (Memory.reinforcementLearning.verbosity != undefined) {
+    if (Memory.reinforcementLearning.verbosity !== undefined) {
       return Memory.reinforcementLearning.verbosity
     }
   }
   return 0
 }
 
-module.exports = {
+export {
   color,
   getAllColonyRooms,
   getReinforcementLearningTrainingVerbosity,

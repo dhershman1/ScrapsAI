@@ -1,0 +1,51 @@
+{
+  "name": "scraps-ai",
+  "version": "0.1.0",
+  "description": "A simple to complex ai for screeps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "move": "sh ./scripts/mover.sh",
+    "build:move": "rollup -c && ./scripts/mover.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhershman1/ScrapsAI.git"
+  },
+  "keywords": [
+    "screeps",
+    "overlord",
+    "ai"
+  ],
+  "author": "Dustin Hershman<dustinh17@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhershman1/ScrapsAI/issues"
+  },
+  "homepage": "https://github.com/dhershman1/ScrapsAI#readme",
+  "devDependencies": {
+    "rollup": "^2.52.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "standard": "^16.0.3"
+  },
+  "standard": {
+    "globals": [
+      "Memory",
+      "RawMemory",
+      "Game",
+      "Stats",
+      "_",
+      "BODYPART_COST",
+      "MAX_CREEP_SIZE",
+      "WORK",
+      "CARRY",
+      "MOVE",
+      "CLAIM"
+    ],
+    "ignore": [
+      "./node_modules",
+      "./dist"
+    ]
+  }
+}

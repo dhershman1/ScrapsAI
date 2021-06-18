@@ -1,12 +1,12 @@
-const {
+import {
   getUsername,
   getReinforcementLearningTrainingVerbosity,
   onPublicServer,
   onTrainingEnvironment
-} = require('utils')
+} from './utils'
 
 const USERNAME = getUsername()
-const USER_PROFILE = false
+const USE_PROFILER = false
 const PROFILER_COLONY_LIMIT = Math.ceil(Game.gcl.level / 2)
 const PROFILER_INCLUDE_COLONIES = []
 const OVERMIND_SMALL_CAPS = '\u1D0F\u1D20\u1D07\u0280\u1D0D\u026A\u0274\u1D05'
@@ -21,9 +21,9 @@ const RL_TRAINING_VERBOSITY = getReinforcementLearningTrainingVerbosity()
 
 global.__DEFAULT_OVERMIND_SIG__ = DEFAULT_OVERMIND_SIG
 
-module.exports = {
+export {
   USERNAME,
-  USER_PROFILE,
+  USE_PROFILER,
   PROFILER_COLONY_LIMIT,
   PROFILER_INCLUDE_COLONIES,
   OVERMIND_SMALL_CAPS,

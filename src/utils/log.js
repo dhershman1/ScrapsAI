@@ -1,4 +1,4 @@
-const { color } = require('utils')
+import { color } from './index'
 
 const LOG_LEVELS = new Map([
   ['ERROR', 'red'],
@@ -16,4 +16,4 @@ function log (l, ...args) {
   }
 }
 
-module.exports = log
+export default log

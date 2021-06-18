@@ -1,11 +1,11 @@
-const { isIVM } = require('utils')
-const {
+import { isIVM } from '../utils'
+import {
   DEFAULT_OP_MODE,
   DEFAULT_OVERMIND_SIG,
   PROFILER_COLONY_LIMIT,
   USE_PROFILER
-} = require('settings')
-const log = require('log')
+} from '../settings'
+import log from '../utils/log'
 
 let lastMemory = null
 let lastTime = 0
@@ -22,7 +22,7 @@ function shouldRun () {
     run = false
   }
 
-  if (USE_PROFILER && Game.time % 10 == 0) {
+  if (USE_PROFILER && Game.time % 10 === 0) {
     log('WARNING', `Profiling is currently enabled; only ${PROFILER_COLONY_LIMIT} colonies will be run!`)
   }
 
@@ -65,7 +65,8 @@ function load () {
     global.Memory = lastMemory
     RawMemory._parsed = lastMemory
   } else {
-    Memory.rooms // Forces parsing
+    // Forces parsing
+    Memory.rooms // eslint-disable-line
     lastMemory = RawMemory._parsed
     Memory.stats.persistent.lastMemoryReset = Game.time
   }
@@ -88,7 +89,7 @@ function garbageCollect (quick = false) {
     log('DEBUG', `Running ${quick ? 'quick' : 'FULL'} garbage collection. ` +
       `Elapsed time: ${Game.cpu.getUsed() - start}.`)
   } else {
-    log('DEBUG', `Manual garbage collection is unavailable on this server.`)
+    log('DEBUG', 'Manual garbage collection is unavailable on this server.')
   }
 }
 
@@ -112,8 +113,6 @@ function _setDeep (obj, keys, value) {
 
   if (!tailKeys.length) {
     obj[key] = value
-
-    return
   } else {
     if (!obj[key]) {
       obj[key] = {}
@@ -126,7 +125,7 @@ function _setDeep (obj, keys, value) {
 function setDeep (obj, key, val) {
   const keys = key.split('.')
 
-  return _setDeep(obj, keys, value)
+  return _setDeep(obj, keys, val)
 }
 
 function _formatPathingMem () {
@@ -245,11 +244,11 @@ function cleanPathingMemory () {
     // Randomly clean weighted distances
     for (const pos1Name in Memory.pathing.weightedDistances) {
       if (_.isEmpty(Memory.pathing.weightedDistances[pos1Name])) {
-        delete Memory.pathing.weightedDistances[pos1Name];
+        delete Memory.pathing.weightedDistances[pos1Name]
       } else {
         for (const pos2Name in Memory.pathing.weightedDistances[pos1Name]) {
           if (Math.random() < weightedDistanceCleanProb) {
-            delete Memory.pathing.weightedDistances[pos1Name][pos2Name];
+            delete Memory.pathing.weightedDistances[pos1Name][pos2Name]
           }
         }
       }
@@ -273,6 +272,18 @@ function createGlobalMemory () {
   cleanColonies()
   cleanConSites()
   cleanPathingMemory()
+  cleanHeap()
+}
+
+function cleanHeap () {
+  if (Game.time % HEAP_CLEAN_FREQ === HEAP_CLEAN_FREQ - 3) {
+    if (Game.cpu.bucket < BUCKET_CPU_HALT) {
+      Game.cpu.halt()
+    } else if (Game.cpu.bucket < BUCKET_CLEAR_CACHE) {
+      delete global._cache
+      createGlobalMemory()
+    }
+  }
 }
 
 function format () {
@@ -297,10 +308,11 @@ function format () {
   createGlobalMemory()
 }
 
-module.exports = {
+export {
   format,
   load,
   garbageCollect,
+  setDeep,
   shouldRun,
   wrap
 }

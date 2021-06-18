@@ -1,3 +1,17 @@
+/**
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+ ▄█▀▀▀█▄█                                             ██     ▀████▀
+▄██    ▀█                                            ▄██▄      ██
+▀███▄    ▄██▀██▀███▄███ ▄█▀██▄ ▀████████▄ ▄██▀███   ▄█▀██▄     ██
+  ▀█████▄█▀  ██  ██▀ ▀▀██   ██   ██   ▀██ ██   ▀▀  ▄█  ▀██     ██
+▄     ▀███       ██     ▄█████   ██    ██ ▀█████▄  ████████    ██
+██     ███▄    ▄ ██    ██   ██   ██   ▄██ █▄   ██ █▀      ██   ██
+█▀█████▀ █████▀▄████▄  ▀████▀██▄ ██████▀  ██████▀███▄   ▄████▄████▄
+                                 ██
+                               ▄████▄
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+*/
 const roleHarvester = require('role.harvester')
 const roleUpgrader = require('role.upgrader')
 const roleBuilder = require('role.builder')
@@ -19,8 +33,6 @@ module.exports.loop = function () {
     Game.spawns['home'].spawnCreep([WORK, CARRY, MOVE], newName,
       { memory: { role: 'harvester' } })
   }
-
-
 
   if (Game.spawns['home'].spawning) {
     const spawningCreep = Game.creeps[Game.spawns['home'].spawning.name]
