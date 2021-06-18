@@ -49,11 +49,17 @@ function getReinforcementLearningTrainingVerbosity () {
   return 0
 }
 
+function isRoomAvailable (roomName) {
+  // TODO: Use .timestamp on roomStatus for cache, recheck after expiration
+  return Game.map.getRoomStatus(roomName) === 'normal'
+}
+
 export {
   color,
   getAllColonyRooms,
   getReinforcementLearningTrainingVerbosity,
   getUsername,
+  isRoomAvailable,
   onPublicServer,
   onTrainingEnvironment,
   printRoomName,
