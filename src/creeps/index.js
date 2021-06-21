@@ -1,6 +1,6 @@
 
 function bodyCost (parts) {
-  return _.sum(parts, p => BODYPART_COST[p])
+  return parts.reduce((acc, p) => acc + BODYPART_COST[p])
 }
 
 function patternCost (setup) {
